@@ -35,6 +35,22 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# Cache
+.cache/
+
+# IDE files
+.vscode/
+.idea/
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
+
 # Ignore files from outside this directory
 ../*
 !../.gitignore
@@ -42,7 +58,6 @@ next-env.d.ts
 # System files
 .CFUserTextEncoding
 .bash_history
-.cache/
 .config/
 .cursor/
 .docker/
@@ -53,7 +68,6 @@ next-env.d.ts
 .npm/
 .ssh/
 .viminfo
-.vscode/
 .yarnrc
 .zprofile
 .zsh_history
