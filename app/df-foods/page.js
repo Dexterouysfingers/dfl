@@ -19,9 +19,9 @@ export default function DFFoodsPage() {
             <span className="flex items-center mb-4">
               <span className="bg-green-600 text-white px-3 py-1 rounded font-extrabold text-base tracking-wide shadow">DF Foods</span>
             </span>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4 drop-shadow-lg">A One-stop Digital Marketplace for Trading.</h1>
+            <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4 drop-shadow-lg">Revolutionizing Food Distribution Across Nigeria</h1>
             <p className="text-lg md:text-2xl text-gray-100 font-medium drop-shadow-lg max-w-xl">
-              DF Foods is a one-stop digital marketplace for trading raw agro-products, inputs and commodities. Consumers can conveniently purchase fresh foods products and groceries. Our licensed abattoir also enables us to efficiently deliver hygienic livestock to our consumers.
+              DF Foods is a comprehensive food distribution platform connecting farmers, processors, and consumers. We deliver fresh food products, groceries, and hygienic livestock through our licensed abattoir, ensuring quality and efficiency from farm to table.
             </p>
           </div>
         </div>
@@ -116,16 +116,16 @@ export default function DFFoodsPage() {
         {/* Creative Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
           <div className="rounded-lg overflow-hidden shadow-sm">
-            <Image src="/food1.png" alt="Digital Innovation" width={400} height={300} className="object-cover w-full h-48" />
+            <Image src="/food1.PNG" alt="Digital Innovation" width={400} height={300} className="object-cover w-full h-48" />
           </div>
           <div className="rounded-lg overflow-hidden shadow-sm">
-            <Image src="/food2.png" alt="Quality Assurance" width={400} height={300} className="object-cover w-full h-48" />
+            <Image src="/food2.PNG" alt="Quality Assurance" width={400} height={300} className="object-cover w-full h-48" />
           </div>
           <div className="rounded-lg overflow-hidden shadow-sm">
-            <Image src="/food3.png" alt="Efficient Logistics" width={400} height={300} className="object-cover w-full h-48" />
+            <Image src="/food3.PNG" alt="Efficient Logistics" width={400} height={300} className="object-cover w-full h-48" />
           </div>
           <div className="rounded-lg overflow-hidden shadow-sm">
-            <Image src="/food4.png" alt="Community Impact" width={400} height={300} className="object-cover w-full h-48" />
+            <Image src="/food4.PNG" alt="Community Impact" width={400} height={300} className="object-cover w-full h-48" />
           </div>
         </div>
       </section>
@@ -174,7 +174,7 @@ export default function DFFoodsPage() {
           />
         </div>
         {/* SVG Curve at the bottom */}
-        <div className="absolute left-0 right-0 bottom-0 w-full overflow-hidden leading-none z-20 pointer-events-none">
+        <div className="absolute left-0 right-0 bottom-0 w-full overflow-hidden leading-none">
           <svg viewBox="0 0 1600 150" width="100%" height="150" preserveAspectRatio="none">
             <path d="M0,0 C800,180 800,180 1600,0 L1600,150 L0,150 Z" fill="#fff"/>
           </svg>

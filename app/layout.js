@@ -6,6 +6,11 @@ export const metadata = {
   title: 'DFL - Agri-FoodTech Solutions',
   description: 'Dexterous Fingers Limited provides smart tools and solutions for agriculture and food manufacturing across Africa.',
   keywords: 'agriculture, food technology, Africa, farming, food processing, smart tools',
+  icons: {
+    icon: '/favicon.png',
+    shortcut: '/favicon.png',
+    apple: '/favicon.png',
+  },
   openGraph: {
     title: 'DFL - Agri-FoodTech Solutions',
     description: 'Dexterous Fingers Limited provides smart tools and solutions for agriculture and food manufacturing across Africa.',
@@ -34,6 +39,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      </head>
       <body className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-grow">

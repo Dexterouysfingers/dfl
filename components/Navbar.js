@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Menu, X, Phone } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -15,6 +15,59 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Close menu when clicking outside - FIXED LOGIC
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // Don't close if clicking on the mobile menu button or menu items
+      if (event.target.closest('.mobile-menu-container')) {
+        return
+      }
+      
+      // Close menu if clicking outside
+      if (isOpen) {
+        setIsOpen(false)
+      }
+    }
+
+    if (isOpen) {
+      // Add a small delay to prevent immediate closing
+      const timeoutId = setTimeout(() => {
+        document.addEventListener('mousedown', handleClickOutside)
+        document.addEventListener('touchstart', handleClickOutside)
+      }, 100)
+
+      return () => {
+        clearTimeout(timeoutId)
+        document.removeEventListener('mousedown', handleClickOutside)
+        document.removeEventListener('touchstart', handleClickOutside)
+      }
+    }
+  }, [isOpen])
+
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen])
+
+  const handleMenuToggle = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    console.log('Menu toggle clicked, current state:', isOpen)
+    setIsOpen(!isOpen)
+  }
+
+  const handleMenuClose = () => {
+    setIsOpen(false)
+  }
 
   const navigation = [
     { name: 'Home', href: '/' },
@@ -30,34 +83,23 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Top Info Bar */}
-      <div className="w-full bg-gradient-to-r from-gray-50 via-gray-100 to-gray-50 border-b border-gray-200 py-3 relative overflow-hidden">
-        <div className="absolute inset-0 bg-pattern opacity-30"></div>
-        <div className="container-custom flex justify-between items-center relative z-10">
-          <span className="text-gray-600 font-medium text-sm md:text-base flex items-center">
-            <span className="w-2 h-2 bg-gradient-to-r from-primary-500 to-green-500 rounded-full mr-2 animate-pulse shadow-sm"></span>
-            Nigeria's First Digital Agriculture Platform
-          </span>
-          <span className="text-gray-700 text-xs md:text-sm flex items-center font-medium">
-            <Phone className="w-3 h-3 mr-1 text-primary-600" />
-            Helpline: +234 (0) 806 943 6415
-          </span>
-        </div>
-      </div>
+      {/* Blur overlay when menu is open */}
+      {isOpen && (
+        <div className="md:hidden fixed inset-0 bg-black/20 backdrop-blur-sm z-[9998]" />
+      )}
       
-      {/* Main Navbar */}
-      <nav className={`bg-white sticky top-0 z-50 transition-all duration-300 ${
+      <nav className={`bg-white sticky top-0 z-[9999] transition-all duration-300 ${
         scrolled ? 'shadow-lg backdrop-blur-md bg-white/95 border-b border-gray-100' : 'shadow-sm'
       }`}>
         <div className="container-custom">
-          <div className="flex justify-between items-center h-20">
+          <div className="flex justify-between items-center h-16 sm:h-20">
             {/* Logo */}
             <div className="flex-shrink-0">
               <Link href="/" className="flex items-center group">
                 <img 
                   src="/dfl-logo.png" 
                   alt="Dexterous Fingers Limited (DFL) Logo - Home" 
-                  className="h-40 w-auto transition-transform duration-300 group-hover:scale-105 drop-shadow-sm" 
+                  className="h-12 sm:h-16 md:h-20 w-auto transition-transform duration-300 group-hover:scale-105 drop-shadow-sm" 
                 />
               </Link>
             </div>
@@ -102,11 +144,14 @@ export default function Navbar() {
             </div>
             
             {/* Mobile menu button */}
-            <div className="md:hidden">
+            <div className="md:hidden flex items-center mobile-menu-container">
               <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="text-gray-700 hover:text-primary-600 focus:outline-none focus:text-primary-600 p-2 rounded-lg hover:bg-gray-100 transition-all duration-200"
+                onClick={handleMenuToggle}
+                onTouchStart={handleMenuToggle}
+                className="text-gray-700 hover:text-primary-600 focus:outline-none focus:text-primary-600 p-3 rounded-lg hover:bg-gray-100 transition-all duration-200 border border-gray-200 bg-white shadow-md hover:shadow-lg min-w-[48px] min-h-[48px] flex items-center justify-center"
                 aria-label="Toggle mobile menu"
+                type="button"
+                style={{ touchAction: 'manipulation' }}
               >
                 {isOpen ? (
                   <X className="h-6 w-6" />
@@ -117,36 +162,36 @@ export default function Navbar() {
             </div>
           </div>
           
-          {/* Mobile Navigation */}
+          {/* Mobile Navigation - Fixed positioning to prevent hiding behind content */}
           {isOpen && (
-            <div className="md:hidden absolute top-full left-0 right-0 bg-white border-t border-gray-200 shadow-xl z-50 animate-fadeIn backdrop-blur-md">
-              <div className="px-4 pt-4 pb-6 space-y-2">
+            <div className="md:hidden fixed top-16 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-[10000] mobile-menu-container">
+              <div className="px-4 py-2 space-y-1">
                 {navigation.map((item) => (
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="text-gray-700 hover:text-primary-600 block px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 hover:bg-gradient-to-r hover:from-gray-50 hover:to-primary-50"
-                    onClick={() => setIsOpen(false)}
+                    className="text-gray-700 hover:text-primary-600 block px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 hover:bg-gray-50"
+                    onClick={handleMenuClose}
                   >
                     {item.name}
                   </Link>
                 ))}
-                <div className="border-t border-gray-200 my-3"></div>
+                <div className="border-t border-gray-200 my-2"></div>
                 {highlightedLinks.map((item) => (
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="text-primary-600 font-semibold block px-4 py-3 rounded-lg text-base hover:bg-gradient-to-r hover:from-primary-50 hover:to-green-50 transition-all duration-200"
-                    onClick={() => setIsOpen(false)}
+                    className="text-primary-600 font-semibold block px-4 py-3 rounded-lg text-base hover:bg-primary-50 transition-all duration-200"
+                    onClick={handleMenuClose}
                   >
                     {item.name}
                   </Link>
                 ))}
-                <div className="pt-4">
+                <div className="pt-2">
                   <Link
                     href="/careers"
                     className="btn-primary flex items-center justify-center w-full"
-                    onClick={() => setIsOpen(false)}
+                    onClick={handleMenuClose}
                   >
                     Careers
                   </Link>

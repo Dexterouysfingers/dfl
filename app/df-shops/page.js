@@ -172,7 +172,7 @@ export default function DFShopsPage() {
           />
         </div>
         {/* SVG Curve at the bottom */}
-        <div className="absolute left-0 right-0 bottom-0 w-full overflow-hidden leading-none z-20 pointer-events-none">
+        <div className="absolute left-0 right-0 bottom-0 w-full overflow-hidden leading-none">
           <svg viewBox="0 0 1600 150" width="100%" height="150" preserveAspectRatio="none">
             <path d="M0,0 C800,180 800,180 1600,0 L1600,150 L0,150 Z" fill="#fff"/>
           </svg>

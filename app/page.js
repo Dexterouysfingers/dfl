@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight, Leaf, Factory, Users, TrendingUp } from 'lucide-react'
 
 export default function Home() {
@@ -14,19 +15,19 @@ export default function Home() {
             <div className="absolute inset-0 hero-gradient"></div>
             <div className="container-custom relative z-10">
               <div className="text-center max-w-4xl mx-auto stagger-animation">
-                <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight text-shadow-lg">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight text-shadow-lg px-4">
                   Smart Solutions for
                   <span className="gradient-text block"> African Agriculture</span>
                 </h1>
-                <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto leading-relaxed text-shadow">
+                <p className="text-base sm:text-lg md:text-xl text-gray-200 mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed text-shadow px-4">
                   Empowering farmers and food processors across Africa with innovative 
                   technology solutions that drive efficiency, sustainability, and growth.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link href="/solutions" className="btn-primary pulse-glow">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+                  <Link href="/solutions" className="btn-primary pulse-glow text-sm sm:text-base">
                     Explore Solutions
                   </Link>
-                  <Link href="/about" className="btn-secondary">
+                  <Link href="/about" className="btn-secondary text-sm sm:text-base">
                     Learn More
                   </Link>
                 </div>
@@ -37,49 +38,57 @@ export default function Home() {
       </section>
 
       {/* About Section with Image */}
-      <section className="py-20 section-gradient bg-pattern">
+      <section className="py-12 sm:py-16 md:py-20 section-gradient bg-pattern">
         <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             <div className="stagger-animation">
               <div className="flex items-center mb-4">
-                <div className="w-12 h-1 bg-gradient-to-r from-primary-600 to-green-600 rounded-full mr-4"></div>
-                <span className="text-primary-600 font-semibold">Our Approach</span>
+                <div className="w-8 sm:w-12 h-1 bg-gradient-to-r from-primary-600 to-green-600 rounded-full mr-3 sm:mr-4"></div>
+                <span className="text-primary-600 font-semibold text-sm sm:text-base">Our Approach</span>
               </div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">
                 Transforming Agriculture Through Technology
               </h2>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-600 mb-4 sm:mb-6 leading-relaxed">
                 DFL is a global Agtech company focused on solving deficiencies in the food value chain. 
                 Our business model leverages technology to connect stakeholders with easy access to 
                 aggregate farm produce, raw agro-products and processed food.
               </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
                 Our Purpose is to deliver premium value to stakeholders in the food value chain. 
                 We are keen on leaving a strong legacy which is why we are focused on building 
                 a household name unrivaled in Africa's digital agricultural space.
               </p>
             </div>
             <div className="gradient-border">
-              <img src="/section2.png" alt="DFL Agricultural Solutions" className="w-full h-auto rounded-xl" />
+              <Image 
+                src="/section2.png" 
+                alt="DFL Agricultural Solutions" 
+                width={600}
+                height={400}
+                className="w-full h-auto rounded-xl"
+                loading="lazy"
+                priority={false}
+              />
             </div>
           </div>
         </div>
       </section>
 
       {/* Mission Section with Background */}
-      <section className="py-20 text-white relative overflow-hidden" style={{ backgroundImage: 'url(/Black.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <section className="py-12 sm:py-16 md:py-20 text-white relative overflow-hidden" style={{ backgroundImage: 'url(/Black.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/60"></div>
         <div className="container-custom relative z-10">
           <div className="text-center max-w-4xl mx-auto stagger-animation">
             <div className="flex items-center justify-center mb-4">
-              <div className="w-12 h-1 bg-gradient-to-r from-primary-400 to-green-400 rounded-full mr-4"></div>
-              <span className="text-primary-400 font-semibold">Our Methodology</span>
-              <div className="w-12 h-1 bg-gradient-to-r from-primary-400 to-green-400 rounded-full ml-4"></div>
+              <div className="w-8 sm:w-12 h-1 bg-gradient-to-r from-primary-400 to-green-400 rounded-full mr-3 sm:mr-4"></div>
+              <span className="text-primary-400 font-semibold text-sm sm:text-base">Our Methodology</span>
+              <div className="w-8 sm:w-12 h-1 bg-gradient-to-r from-primary-400 to-green-400 rounded-full ml-3 sm:ml-4"></div>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-shadow-lg">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 text-shadow-lg px-4">
               How We Do It
             </h2>
-            <p className="text-xl text-gray-300 leading-relaxed text-shadow">
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed text-shadow px-4">
               At DFL, we have aligned our business models with Sustainable Development Goal 2, 
               to end all forms of hunger while promoting food security across Africa. Our 
               tech-infused platform drives an enabling environment for farmers and sets up 
